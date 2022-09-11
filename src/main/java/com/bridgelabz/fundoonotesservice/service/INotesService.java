@@ -3,6 +3,7 @@ package com.bridgelabz.fundoonotesservice.service;
 import com.bridgelabz.fundoonotesservice.dto.NotesDto;
 import com.bridgelabz.fundoonotesservice.model.NotesModel;
 import com.bridgelabz.fundoonotesservice.util.Response;
+import com.bridgelabz.fundoonotesservice.util.ResponseToken;
 
 import java.util.List;
 
