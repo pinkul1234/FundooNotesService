@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "Notes")
@@ -30,12 +29,8 @@ public class NotesModel {
     public NotesModel(NotesDto notesDto){
         this.title = notesDto.getTitle();
         this.description = notesDto.getDescription();
-        this.userId = notesDto.getUserId();
-        this.registerDate = notesDto.getRegisterDate();
-        this.updateDate = notesDto.getUpdateDate();
         this.emailId = notesDto.getEmailId();
         this.color = notesDto.getColor();
-        this.reminderTime = notesDto.getReminderTime();
     }
 
     public NotesModel() {
