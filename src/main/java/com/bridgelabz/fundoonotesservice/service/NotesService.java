@@ -73,7 +73,6 @@ public class NotesService implements INotesService {
         if(isNotesPresent){
             Optional<NotesModel> isId = notesRepository.findById(id);
             if (isId.isPresent()){
-                notesRepository.delete(isId.get());
                 return new Response("success", 200, isId.get());
             }
             throw new NotesNotFoundException(400, "Not found");
@@ -86,6 +85,7 @@ public class NotesService implements INotesService {
         if (isNotesPresent){
             Optional<NotesModel> isId = notesRepository.findById(id);
             if (isId.isPresent()){
+                notesRepository.delete(isId.get());
                 return new Response("success", 200, isId.get());
             }
             throw new NotesNotFoundException(400, "Not found");
