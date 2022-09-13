@@ -2,7 +2,6 @@ package com.bridgelabz.fundoonotesservice.dto;
 
 
 import lombok.Data;
-import java.time.LocalDateTime;
 
 @Data
 public class NotesDto {

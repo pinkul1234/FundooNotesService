@@ -24,4 +24,6 @@ public interface INotesService {
     Response pin(long noteId, String token);
 
     Response archieveNotes(long noteId, String token);
+
+//    Response addCollabrators(long noteId, String email, String token);
 }
