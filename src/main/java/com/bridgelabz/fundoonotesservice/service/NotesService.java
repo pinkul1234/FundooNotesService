@@ -156,18 +156,18 @@ public class NotesService implements INotesService {
         throw new NotesNotFoundException(400, "Token is wrong");
     }
 
-//    @Override
-//    public Response addCollabrators(long noteId, String email, String token) {
-//        boolean isUserPresent = restTemplate.getForObject("http://localhost:8087/user/validate" + token, Boolean.class);
-//        if (isUserPresent){
-//            Optional<NotesModel> isCollabratorsPresent = notesRepository.findByEmailId(email);
-//            if (isCollabratorsPresent.isPresent()){
-//                Optional<NotesModel> isIdPresent = notesRepository.findById(noteId);
-//                notesRepository.save(isIdPresent.get());
-//                return new Response("success", 200, isIdPresent.get());
-//            }
-//            throw new NotesNotFoundException(400, "note found");
-//        }
-//        throw new NotesNotFoundException(400, "Token is wrong");
-//    }
+    @Override
+    public Response addCollabrators(long noteId, String emailId, List<String> collabrators) {
+        boolean isUserPresent = restTemplate.getForObject("http://localhost:8087/user/validateEmail" + emailId, Boolean.class);
+        if (isUserPresent){
+            Optional<NotesModel> isEmailPresent = notesRepository.findById(noteId);
+            isEmailPresent.get().setEmailId(emailId);
+            isEmailPresent.get().setCollabrators(collabrators);
+                notesRepository.save(isEmailPresent.get());
+                return new Response("success", 200, isEmailPresent.get());
+            }
+            throw new NotesNotFoundException(400, "not found");
+        }
+
 }
+

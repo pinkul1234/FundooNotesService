@@ -29,6 +29,9 @@ public class NotesModel {
     private String color;
     private LocalDateTime reminderTime;
 
+    @ElementCollection(targetClass = String.class)
+    private List<String> collabrators;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "labelNote", joinColumns = {@JoinColumn(name = "noteId")},inverseJoinColumns = {@JoinColumn(name = "labelId")})
     @JsonBackReference

@@ -38,4 +38,9 @@ public class LabelController {
         Response response = labelService.deleteLabel(labelId, token);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    @PostMapping("/addlabel")
+    public ResponseEntity<Response> addLabel(@RequestParam long labelId, @RequestHeader String token, List<Long> noteId){
+        Response response = labelService.addLabel(labelId, token, noteId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

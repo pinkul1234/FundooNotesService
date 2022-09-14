@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,6 +79,28 @@ public class LabelService implements ILabelService {
                 return new Response("success", 200, isLabelPresent.get());
             }
             throw new LabelNotFoundException(400, "Not found");
+        }
+        throw new LabelNotFoundException(400, "Token is wrong");
+    }
+
+    @Override
+    public Response addLabel(long labelId, String token, List<Long> noteId) {
+        boolean isUserPresent = restTemplate.getForObject("http://localhost:8087/user/validate" + token, Boolean.class);
+        if (isUserPresent){
+            List<NotesModel> notesModels = new ArrayList<>();
+            noteId.stream().forEach(note ->{
+                Optional<NotesModel> isNotePresent = notesRepository.findById(note);
+                if (isNotePresent.isPresent()){
+                    notesModels.add(isNotePresent.get());
+                }
+            });
+            Optional<LabelModel> isLabelPresent = labelRepository.findById(labelId);
+            if (isLabelPresent.isPresent()){
+                isLabelPresent.get().setList(notesModels);
+                labelRepository.save(isLabelPresent.get());
+                return new Response("success", 200, isLabelPresent.get());
+            }
+            throw new LabelNotFoundException(400, "not found");
         }
         throw new LabelNotFoundException(400, "Token is wrong");
     }

@@ -17,5 +17,5 @@ public interface ILabelService {
 
     Response deleteLabel(long labelId, String token);
 
-//    List<NotesModel> getLabelNotes(String token, Long labelId, Long noteId);
+    Response addLabel(long labelId, String token, List<Long> noteId);
 }

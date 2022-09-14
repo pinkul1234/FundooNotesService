@@ -4,6 +4,7 @@ import com.bridgelabz.fundoonotesservice.dto.NotesDto;
 import com.bridgelabz.fundoonotesservice.model.NotesModel;
 import com.bridgelabz.fundoonotesservice.util.Response;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface INotesService {
@@ -25,5 +26,6 @@ public interface INotesService {
 
     Response archieveNotes(long noteId, String token);
 
-//    Response addCollabrators(long noteId, String email, String token);
+    Response addCollabrators(long noteId, String emailId, List<String> collabrators);
+
 }

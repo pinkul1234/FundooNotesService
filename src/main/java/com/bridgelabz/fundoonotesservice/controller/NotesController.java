@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -65,10 +66,10 @@ public class NotesController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-//    @PostMapping("/addcollabrators")
-//    public ResponseEntity<Response> addCollabrators(@RequestParam long noteId, @RequestParam String email, @RequestHeader String token){
-//        Response response = notesService.addCollabrators(noteId, email, token);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
+    @PostMapping("/addcollabrators")
+    public ResponseEntity<Response> addCollabrators(@RequestParam long noteId, @RequestParam String emailId, @RequestHeader List<String> collabrators) {
+        Response response = notesService.addCollabrators(noteId, emailId, collabrators);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
 }
