@@ -42,7 +42,7 @@ public class LabelService implements ILabelService {
 
     @Override
     public Response updateLabel(long labelId, String token, LabelDto labelDto) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
         if (isUserPresent) {
             Optional<LabelModel> isLabelPresent = labelRepository.findById(labelId);
             if (isLabelPresent.isPresent()) {
@@ -61,7 +61,7 @@ public class LabelService implements ILabelService {
 
     @Override
     public List<LabelModel> readAllLabel(String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
         if (isUserPresent) {
             List<LabelModel> isLabelPresent = labelRepository.findAll();
             return isLabelPresent;
@@ -71,7 +71,7 @@ public class LabelService implements ILabelService {
 
     @Override
     public Response deleteLabel(long labelId, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
         if (isUserPresent) {
             Optional<LabelModel> isLabelPresent = labelRepository.findById(labelId);
             if (isLabelPresent.isPresent()) {
@@ -85,7 +85,7 @@ public class LabelService implements ILabelService {
 
     @Override
     public Response addLabel(long labelId, String token, List<Long> noteId) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
         if (isUserPresent){
             List<NotesModel> notesModels = new ArrayList<>();
             noteId.stream().forEach(note ->{
