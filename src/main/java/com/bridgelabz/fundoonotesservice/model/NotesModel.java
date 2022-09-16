@@ -19,7 +19,7 @@ public class NotesModel {
     private Long id;
     private String title;
     private String description;
-    private long userId;
+    private Long userId;
     private LocalDateTime registerDate;
     private LocalDateTime updateDate;
     private boolean trash;
@@ -27,10 +27,10 @@ public class NotesModel {
     private boolean pin;
     private String emailId;
     private String color;
-    private LocalDateTime reminderTime;
+    private String reminderTime;
 
     @ElementCollection(targetClass = String.class)
-    private List<String> collabrators;
+    private String collabrators;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "labelNote", joinColumns = {@JoinColumn(name = "noteId")},inverseJoinColumns = {@JoinColumn(name = "labelId")})
@@ -44,6 +44,7 @@ public class NotesModel {
         this.description = notesDto.getDescription();
         this.emailId = notesDto.getEmailId();
         this.color = notesDto.getColor();
+        this.reminderTime = notesDto.getReminderTime();
     }
 
     public NotesModel() {

@@ -11,11 +11,11 @@ import java.util.List;
 public interface ILabelService {
     Response createLabel(LabelDto labelDto);
 
-    Response updateLabel(long labelId, String token, LabelDto labelDto);
+    Response updateLabel(Long labelId, String token, LabelDto labelDto);
 
     List<LabelModel> readAllLabel(String token);
 
-    Response deleteLabel(long labelId, String token);
+    Response deleteLabel(Long labelId, String token);
 
-    Response addLabel(long labelId, String token, List<Long> noteId);
+    Response addLabel(Long labelId, String token, List<Long> noteId);
 }

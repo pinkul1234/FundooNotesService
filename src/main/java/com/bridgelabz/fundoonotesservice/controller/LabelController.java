@@ -24,7 +24,7 @@ public class LabelController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PutMapping("/updatelabel/{id}")
-    public ResponseEntity<Response> updateLabel(@RequestHeader String token, @RequestBody LabelDto labelDto, @PathVariable long labelId){
+    public ResponseEntity<Response> updateLabel(@RequestHeader String token, @RequestBody LabelDto labelDto, @PathVariable Long labelId){
         Response response = labelService.updateLabel(labelId, token, labelDto);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -34,12 +34,12 @@ public class LabelController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @DeleteMapping("/deletelabel")
-    public ResponseEntity<Response> deleteLabel(@PathVariable long labelId, @RequestHeader String token) {
+    public ResponseEntity<Response> deleteLabel(@PathVariable Long labelId, @RequestHeader String token) {
         Response response = labelService.deleteLabel(labelId, token);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PostMapping("/addlabel")
-    public ResponseEntity<Response> addLabel(@RequestParam long labelId, @RequestHeader String token, List<Long> noteId){
+    public ResponseEntity<Response> addLabel(@RequestParam Long labelId, @RequestHeader String token, List<Long> noteId){
         Response response = labelService.addLabel(labelId, token, noteId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

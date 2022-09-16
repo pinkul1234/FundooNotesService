@@ -41,7 +41,7 @@ public class LabelService implements ILabelService {
     }
 
     @Override
-    public Response updateLabel(long labelId, String token, LabelDto labelDto) {
+    public Response updateLabel(Long labelId, String token, LabelDto labelDto) {
         boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
         if (isUserPresent) {
             Optional<LabelModel> isLabelPresent = labelRepository.findById(labelId);
@@ -70,7 +70,7 @@ public class LabelService implements ILabelService {
     }
 
     @Override
-    public Response deleteLabel(long labelId, String token) {
+    public Response deleteLabel(Long labelId, String token) {
         boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
         if (isUserPresent) {
             Optional<LabelModel> isLabelPresent = labelRepository.findById(labelId);
@@ -84,7 +84,7 @@ public class LabelService implements ILabelService {
     }
 
     @Override
-    public Response addLabel(long labelId, String token, List<Long> noteId) {
+    public Response addLabel(Long labelId, String token, List<Long> noteId) {
         boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
         if (isUserPresent){
             List<NotesModel> notesModels = new ArrayList<>();

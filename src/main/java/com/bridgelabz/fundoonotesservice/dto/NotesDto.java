@@ -10,5 +10,6 @@ public class NotesDto {
     private String description;
     private String emailId;
     private String color;
+    private String reminderTime;
 
 }

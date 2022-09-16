@@ -10,22 +10,23 @@ import java.util.List;
 public interface INotesService {
     Response createNotes(NotesDto notesDto);
 
-    Response updateNotes(long noteId, String token, NotesDto notesDto);
+    Response updateNotes(Long noteId, String token, NotesDto notesDto);
 
     List<NotesModel> readAllNotes(String token);
 
-    Response readNotesById(long noteId, String token);
+    Response readNotesById(Long noteId, String token);
 
-    Response deletePermanently(long noteId, String token);
+    Response deletePermanently(Long noteId, String token);
 
-    Response restoreNotes(long noteId, String token);
+    Response restoreNotes(Long noteId, String token);
 
-    Response addColour(long noteId, String colour, String token);
+    Response addColour(Long noteId, String colour, String token);
 
-    Response pin(long noteId, String token);
+    Response pin(Long noteId, String token);
 
-    Response archieveNotes(long noteId, String token);
+    Response archieveNotes(Long noteId, String token);
 
-    Response addCollabrators(long noteId, String emailId, List<String> collabrators);
+    Response addCollabrators(Long noteId, String emailId, String collabrators, String token, Long collabratorUserId);
 
+    NotesModel setRemainder(String remainderTime, String token, Long id);
 }
