@@ -41,7 +41,7 @@ public class NotesService implements INotesService {
 
     @Override
     public Response updateNotes(Long noteId, String token, NotesDto notesDto) {
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
         if (isUserPresent) {
             Optional<NotesModel> isNotesPresent = notesRepository.findById(noteId);
             if (isNotesPresent.isPresent()) {
@@ -63,7 +63,7 @@ public class NotesService implements INotesService {
 
     @Override
     public List<NotesModel> readAllNotes(String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
         if(isUserPresent){
             List<NotesModel> isNotesPresent = notesRepository.findAll();
             return isNotesPresent;
@@ -73,7 +73,7 @@ public class NotesService implements INotesService {
 
     @Override
     public Response readNotesById(Long noteId, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
         if(isUserPresent){
             Optional<NotesModel> isIdPresent = notesRepository.findById(noteId);
             if (isIdPresent.isPresent()){
@@ -85,7 +85,7 @@ public class NotesService implements INotesService {
     }
     @Override
     public Response deletePermanently(Long noteId, String token){
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
         if (isUserPresent){
             Optional<NotesModel> isIdPresent = notesRepository.findById(noteId);
             if (isIdPresent.isPresent()){
@@ -98,7 +98,7 @@ public class NotesService implements INotesService {
     }
     @Override
     public Response restoreNotes(Long noteId, String token){
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
         if (isUserPresent){
             Optional<NotesModel> isIdPresent = notesRepository.findById(noteId);
             if (isIdPresent.isPresent()){
@@ -114,7 +114,7 @@ public class NotesService implements INotesService {
 
     @Override
     public Response addColour(Long noteId, String colour, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
         if (isUserPresent){
             Optional<NotesModel> isIdPresent = notesRepository.findById(noteId);
             if (isIdPresent.isPresent()){
@@ -129,7 +129,7 @@ public class NotesService implements INotesService {
 
     @Override
     public Response pin(Long noteId, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
         if (isUserPresent){
             Optional<NotesModel> isIdPresent = notesRepository.findById(noteId);
             if (isIdPresent.isPresent()){
@@ -145,7 +145,7 @@ public class NotesService implements INotesService {
 
     @Override
     public Response archieveNotes(Long noteId, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
         if (isUserPresent){
             Optional<NotesModel> isIdPresent = notesRepository.findById(noteId);
             if (isIdPresent.isPresent()){
@@ -161,17 +161,17 @@ public class NotesService implements INotesService {
 
     @Override
     public Response addCollabrators(Long noteId, String emailId, String collabrators, String token, Long collabratorUserId) {
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validateEmail" + emailId, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validateEmail/" + emailId, Boolean.class);
         if (isUserPresent) {
             Long userId = tokenUtil.decodeToken(token);
             Optional<NotesModel> isIdPresent = notesRepository.findById(userId);
             if (isIdPresent.isPresent()) {
-                Object isEmailPresent = restTemplate.getForObject("http://User-Service:8087/user/validateEmail" + emailId, Object.class);
+                Object isEmailPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validateEmail/" + emailId, Object.class);
                 if (isEmailPresent.equals(null)) {
                     Optional<NotesModel> isNotePresent = notesRepository.findById(noteId);
                     if (isNotePresent.isPresent()) {
                         List<String> collabList = new ArrayList<>();
-                        Object isEmailIdPresent = restTemplate.getForObject("http://User-Service:8087/user/validateEmail" + emailId, Object.class);
+                        Object isEmailIdPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validateEmail/" + emailId, Object.class);
                         if (!isEmailIdPresent.equals(null)) {
                             collabList.add(collabrators);
                         } else {
@@ -198,7 +198,7 @@ public class NotesService implements INotesService {
 
     @Override
     public NotesModel setRemainder(String remainderTime, String token, Long id) {
-        boolean isUserPresent = restTemplate.getForObject("http://User-Service:8087/user/validate" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
         if (isUserPresent){
             Optional<NotesModel> isNotesPresent = notesRepository.findById(id);
             if (isNotesPresent.isPresent()){
