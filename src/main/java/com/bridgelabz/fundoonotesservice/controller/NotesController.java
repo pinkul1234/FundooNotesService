@@ -53,14 +53,30 @@ public class NotesController {
         Response response = notesService.addColour(noteId, colour, token);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    @GetMapping("/getalltrash")
+    public ResponseEntity<List<?>> getAlltrash(@RequestHeader String token) {
+        List<NotesModel> response = notesService.getAlltrash(token);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
+    }
     @PutMapping("/pin{id}")
     public ResponseEntity<Response> pin(@PathVariable Long noteId, @RequestHeader String token){
         Response response = notesService.pin(noteId, token);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    @GetMapping("/getallpinned")
+    public ResponseEntity<List<?>> getAllPinned(@RequestHeader String token){
+        List<NotesModel> response = notesService.getAllPinned(token);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
     @PutMapping("/archieve{id}")
     public ResponseEntity<Response> archieveNotes(@PathVariable Long noteId, @RequestHeader String token){
         Response response = notesService.archieveNotes(noteId, token);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @GetMapping("/getArchieve")
+    public ResponseEntity<List<?>> getAllArchieve(@RequestHeader String token) {
+        List<NotesModel> response = notesService.getAllArchieve(token);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -75,5 +91,4 @@ public class NotesController {
         Response response = new Response("Remainder set successfully", 400, notesModel);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
 }

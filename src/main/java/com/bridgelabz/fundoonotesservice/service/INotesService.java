@@ -29,4 +29,10 @@ public interface INotesService {
     Response addCollabrators(Long noteId, String emailId, String collabrators, String token, Long collabratorUserId);
 
     NotesModel setRemainder(String remainderTime, String token, Long id);
+
+    List<NotesModel> getAllPinned(String token);
+
+    List<NotesModel> getAllArchieve(String token);
+
+    List<NotesModel> getAlltrash(String token);
 }

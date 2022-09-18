@@ -126,6 +126,15 @@ public class NotesService implements INotesService {
         }
         throw new NotesNotFoundException(400, "Token is wrong");
     }
+    @Override
+    public List<NotesModel> getAlltrash(String token) {
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
+        if (isUserPresent) {
+            List<NotesModel> isTrashPresent = notesRepository.findAll();
+            return isTrashPresent;
+        }
+        throw new NotesNotFoundException(400, "Trash Not Available");
+    }
 
     @Override
     public Response pin(Long noteId, String token) {
@@ -142,6 +151,15 @@ public class NotesService implements INotesService {
         }
         throw new NotesNotFoundException(400, "Token is wrong");
     }
+    @Override
+    public List<NotesModel> getAllPinned(String token) {
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
+        if (isUserPresent){
+            List<NotesModel> isPinnedPresent = notesRepository.findAll();
+            return isPinnedPresent;
+        }
+        throw new NotesNotFoundException(400, "pin Not Available");
+    }
 
     @Override
     public Response archieveNotes(Long noteId, String token) {
@@ -157,6 +175,15 @@ public class NotesService implements INotesService {
             throw new NotesNotFoundException(400, "Notes not found");
         }
         throw new NotesNotFoundException(400, "Token is wrong");
+    }
+    @Override
+    public List<NotesModel> getAllArchieve(String token) {
+        boolean isUserPresent = restTemplate.getForObject("http://USER-SERVICE:8087/user/validate/" + token, Boolean.class);
+        if (isUserPresent) {
+            List<NotesModel> isArchievePresent = notesRepository.findAll();
+            return isArchievePresent;
+        }
+        throw new NotesNotFoundException(400, "Archieve Not Available");
     }
 
     @Override
